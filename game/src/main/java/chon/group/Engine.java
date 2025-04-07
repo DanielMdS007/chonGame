@@ -1,5 +1,5 @@
 package chon.group;
-//anotação
+
 import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
