@@ -23,11 +23,19 @@ public class Engine extends Application {
 	@Override
 	public void start(Stage theStage) {
 		try {
-			Environment environment = new Environment(0, 0, 1280, 780, "/images/environment/castle.png");
-			Agent chonBota = new Agent(400, 390, 90, 65, 2, "/images/agents/chonBota.png");
-			Agent chonBot = new Agent(920, 440, 90, 65, 1, "/images/agents/chonBot.png");
+			Environment environment = new Environment(0, 0, 1280, 780, "/images/environment/deathStar.png");
+			Agent chonBota = new Agent(400, 390, 90, 65, 2, "/images/agents/lukeSkywalker.png");
+			Agent chonBot1 = new Agent(920, 440, 90, 65, 1, "/images/agents/darthVader.png");
+			Agent chonBot2 = new Agent(520, 440, 90, 65, 1, "/images/agents/darthVader.png");
+			Agent chonBot3 = new Agent(120, 440, 90, 65, 1, "/images/agents/darthVader.png");
+			Agent chonBot4 = new Agent(220, 440, 90, 65, 1, "/images/agents/darthVader.png");
+
 			environment.setProtagonist(chonBota);
-			environment.getAgents().add(chonBot);
+			environment.getAgents().add(chonBot1);
+			environment.getAgents().add(chonBot2);
+			environment.getAgents().add(chonBot3);
+			environment.getAgents().add(chonBot4);
+
 
 			Canvas canvas = new Canvas(environment.getWidth(), environment.getHeight());
 			GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -74,6 +82,13 @@ public class Engine extends Application {
 
 					environment.getAgents().get(0).chase(environment.getProtagonist().getPosX(),
 							environment.getProtagonist().getPosY());
+					environment.getAgents().get(1).chase(environment.getProtagonist().getPosX(),
+							environment.getProtagonist().getPosY());
+					environment.getAgents().get(2).chase(environment.getProtagonist().getPosX(),
+							environment.getProtagonist().getPosY());
+					environment.getAgents().get(3).chase(environment.getProtagonist().getPosX(),
+							environment.getProtagonist().getPosY());
+							
 					/* Rendering Objects */
 					environment.drawBackground();
 					environment.drawAgents();
