@@ -38,9 +38,9 @@ public class Engine extends Application {
 			GraphicsContext gc = canvas.getGraphicsContext2D();
 
 			System.out.println("Working Directory = " + System.getProperty("user.dir"));
-			Image background = new Image(getClass().getResource("/images/environment/castle.png").toExternalForm());
-			Image chonBota = new Image(getClass().getResource("/images/agents/chonBota.png").toExternalForm());
-			Image chonBot = new Image(getClass().getResource("/images/agents/chonBot.png").toExternalForm());
+			Image background = new Image(getClass().getResource("/images/environment/deathStar.png").toExternalForm());
+			Image chonBota = new Image(getClass().getResource("/images/agents/lukeSkywalker.png").toExternalForm());
+			Image chonBot = new Image(getClass().getResource("/images/agents/darthVader.png").toExternalForm());
 
 			int wImageBot = 65;
 			int hImageBot = 90;
@@ -54,7 +54,7 @@ public class Engine extends Application {
 			gc.setLineWidth(2);
 			Font theFont = Font.font("Verdana", FontWeight.BOLD, 14);
 			gc.setFont(theFont);
-			gc.fillText("Hey, I'm ChonBota...", 365, 380);
+			gc.fillText("Vader, you're dead!!! ", 365, 380);
 
 			root.getChildren().add(canvas);
 			theStage.show();
@@ -137,4 +137,5 @@ public class Engine extends Application {
 		gc.fillText("Y: " + yImage, xImage + 10, yImage - 10);
 	}
 
+	
 }
