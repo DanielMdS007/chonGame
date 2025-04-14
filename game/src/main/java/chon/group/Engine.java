@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 public class Engine extends Application {
 
@@ -42,19 +42,12 @@ public class Engine extends Application {
 			Image chonBota = new Image(getClass().getResource("/images/agents/lukeSkywalker.png").toExternalForm());
 			Image chonBot = new Image(getClass().getResource("/images/agents/darthVader.png").toExternalForm());
 
-			int wImageBot = 65;
-			int hImageBot = 90;
-			gc.drawImage(background, 0, 0, 1280, 780);
-			gc.drawImage(chonBota, 400, 390, wImageBot, hImageBot);
-			gc.drawImage(chonBot, 920, 440, wImageBot, hImageBot);
-
-
 			gc.setFill(Color.BLACK);
 			gc.setStroke(Color.BLACK);
 			gc.setLineWidth(2);
 			Font theFont = Font.font("Verdana", FontWeight.BOLD, 14);
 			gc.setFont(theFont);
-			gc.fillText("Vader, you're dead!!! ", 365, 380);
+			gc.fillText("Hey, I'm ChonBota...", 365, 380);
 
 			root.getChildren().add(canvas);
 			theStage.show();
@@ -79,47 +72,109 @@ public class Engine extends Application {
 			});
 
 			new AnimationTimer() {
-				int xImage = 400;
-				int yImage = 390;
+				
+				//lugar de inicio da chanbota
+				
+				/* ChonBota's Attributes */
+				int xImageChonBota = 400;
+				int yImageChonBota = 390;
+				int wImageChonBota = 65;
+				int hImageChonBota = 90;
+				/* ChonBota's Speed */
+				int speedChonBota = 2;
+
+				//lugar de inicio da chanbot
+				
+				/* ChonBot's Attributes */
+				int xImageChonBot = 920;
+				int yImageChonBot = 440;
+				int wImageChonBot = 65;
+				int hImageChonBot = 90;
+				/* ChonBot's Speed */
+				int speedChonBot = 1;
 
 				@Override
 				public void handle(long arg0) {
+					/* ChonBota Only Moves if the Player Press Something */
 					if (!input.isEmpty()) {
-						gc.clearRect(0, 0, 1280, 780);
-						gc.drawImage(background, 0, 0, canvas.getWidth(), canvas.getHeight());
+						/* ChonBota's Movements */
 						if (input.contains("LEFT")) {
-							if (xImage - 1 > 0)
-								xImage -= 1;
+							if (xImageChonBota - speedChonBota > 0)
+								xImageChonBota -= speedChonBota;
 							else
-								xImage = 0;
+								xImageChonBota = 0;
 
 						} else if (input.contains("RIGHT")) {
-							if ((xImage + wImageBot) + 1 < (wCanvas))
-								xImage += 1;
+							if ((xImageChonBota + wImageChonBota) + speedChonBota < (wCanvas))
+								xImageChonBota += speedChonBota;
 							else
-								xImage = wCanvas - wImageBot;
+								xImageChonBota = wCanvas - wImageChonBota;
 
 						} else if (input.contains("UP")) {
-							if (yImage - 1 > 0)
-								yImage -= 1;
+							if (yImageChonBota - speedChonBota > 0)
+								yImageChonBota -= speedChonBota;
 							else
-								yImage = 0;
+								yImageChonBota = 0;
 
 						} else if (input.contains("DOWN")) {
-							if ((yImage + hImageBot) + 1 < hCanvas)
-								yImage += 1;
+							if ((yImageChonBota + hImageChonBota) + speedChonBota < hCanvas)
+								yImageChonBota += speedChonBota;
 							else
-								yImage = (hCanvas - hImageBot);
+								yImageChonBota = (hCanvas - hImageChonBota);
 						}
-
-						gc.drawImage(chonBota, xImage, yImage, wImageBot, hImageBot);
-						printStatusPanel(gc, xImage, yImage);
 					}
-					gc.drawImage(chonBot, 920, 440, 65, 90);
+					/* ChonBot's Automatic Movements */
+					/* Moving Infinitely to the LEFT Beyond Borders */
+					// xImageChonBot -= 1;
+
+					/* Moving Infinitely to the LEFT Until the Border */
+					/*
+					 * if (xImageChonBot - 1 > 0)
+					 * xImageChonBot -= 1;
+					 * else
+					 * xImageChonBot = 0;
+					 */
+
+					/* Moving Infinitely to the RIGHT Beyond Borders */
+					// xImageChonBot += 1;
+
+					/* Chasing the Player */
+					/*
+					 * if (xImageChonBota > xImageChonBot) {
+					 * xImageChonBot += 1;
+					 * } else if (xImageChonBota < xImageChonBot) {
+					 * xImageChonBot -= 1;
+					 * }
+					 * 
+					 * if (yImageChonBota > yImageChonBot) {
+					 * yImageChonBot += 1;
+					 * } else if (yImageChonBota < yImageChonBot) {
+					 * yImageChonBot -= 1;
+					 * }
+					 */
+
+					/* Chasing the Player with Speed */
+					if (xImageChonBota > xImageChonBot) {
+						xImageChonBot += speedChonBot;
+					} else if (xImageChonBota < xImageChonBot) {
+						xImageChonBot -= speedChonBot;
+					}
+
+					if (yImageChonBota > yImageChonBot) {
+						yImageChonBot += speedChonBot;
+					} else if (yImageChonBota < yImageChonBot) {
+						yImageChonBot -= speedChonBot;
+					}
+
+					/* Rendering Objects */
+					gc.clearRect(0, 0, 1280, 780);
+					gc.drawImage(background, 0, 0, canvas.getWidth(), canvas.getHeight());
+					gc.drawImage(background, 0, 0, 1280, 780);
+					gc.drawImage(chonBota, xImageChonBota, yImageChonBota, wImageChonBota, hImageChonBota);
+					printStatusPanel(gc, xImageChonBota, yImageChonBota);
+					gc.drawImage(chonBot, xImageChonBot, yImageChonBot, wImageChonBot, hImageChonBot);
 				}
-
 			}.start();
-
 			theStage.show();
 
 		} catch (Exception e) {
@@ -127,15 +182,15 @@ public class Engine extends Application {
 		}
 	}
 
-	public static void printStatusPanel(GraphicsContext gc, int xImage, int yImage) {
+	public static void printStatusPanel(GraphicsContext gc, int xImageChonBota, int yImageChonBota) {
 		gc.setFill(Color.BLACK);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
 		Font theFont = Font.font("Verdana", FontWeight.BOLD, 14);
 		gc.setFont(theFont);
-		gc.fillText("X: " + xImage, xImage + 10, yImage - 25);
-		gc.fillText("Y: " + yImage, xImage + 10, yImage - 10);
+		gc.fillText("X: " + xImageChonBota, xImageChonBota + 10, yImageChonBota - 25);
+		gc.fillText("Y: " + yImageChonBota, xImageChonBota + 10, yImageChonBota - 10);
 	}
 
-	
 }
+
