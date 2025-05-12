@@ -46,7 +46,10 @@ public class JavaFxMediator implements EnvironmentDrawer {
                     agent.getPosX(),
                     agent.getPosY(),
                     Color.DARKRED);
+                    
+            drawer.drawEnergyBar(0, 0, 0, 0, 0);
         }
+
         drawer.drawImage(this.environment.getProtagonist().getImage(),
                 this.environment.getProtagonist().getPosX(),
                 this.environment.getProtagonist().getPosY(),

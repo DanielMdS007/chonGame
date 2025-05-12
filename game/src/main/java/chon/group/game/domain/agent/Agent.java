@@ -42,6 +42,12 @@ public class Agent {
     /** The maximum agent's health. */
     private int fullHealth;
 
+    /** The initial agent's health. */
+    private int energy;
+
+    /** The maximum agent's health. */
+    private int fullEnergy;
+
     /* The time of the last hit taken. */
     private long lastHitTime = 0;
 
@@ -214,6 +220,28 @@ public class Agent {
      */
     public int getFullHealth() {
         return fullHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    /**
+     * Sets the energy of the agent.
+     *
+     * @param energy the new energy
+     */
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    /**
+     * Gets the agent's maximum energy.
+     *
+     * @return the agent's maximum energy
+     */
+    public int getFullEnergy() {
+        return fullEnergy;
     }
 
     /**

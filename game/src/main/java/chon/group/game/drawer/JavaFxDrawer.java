@@ -39,40 +39,47 @@ public class JavaFxDrawer {
     /**
      * Renders the Protagonist's Life Bar.
      */
-    public void drawLifeBar(int health, int fullHealth, int width, int posX, int posY, Color color) {
-        /* The border's thickness. */
+
+    public void drawLifeBar(int health, int fullHealth, int width, int posX, int posY) {
         int borderThickness = 2;
-        /* The bar's height. */
         int barHeight = 5;
-        /* The life span proportion calculated based on actual and maximum health. */
-        int lifeSpan = Math.round(
-                (float) ((health * 100 / fullHealth)
-                        * width) / 100);
-        /* Int points before the agent's y position. The initial bar's position. */
-        int barY = 15;
-        /* The outside background of the health bar. */
+        int lifeSpan = Math.round((float) ((health * 100 / fullHealth) * width) / 100);
+        int barY = 15; // altura padrão acima do agente
+    
         this.gc.setFill(Color.BLACK);
-        /* The height is a little bit bigger to give a border experience. */
         this.gc.fillRect(posX,
                 posY - barY,
                 width,
                 barHeight + (borderThickness * 2));
-        /**
-         * The inside of the health bar. It is the effective life of the agent.
-         * The border height plus the thickness multiplied by two (beggining and end at
-         * X).
-         */
-        this.gc.setFill(color);
-        /**
-         * The initial position considering the border from both X and Y points.
-         * The life span less the border thickness multiplied by two (beggining and end
-         * at Y).
-         */
+    
+        this.gc.setFill(Color.RED); // Cor da barra de vida
         this.gc.fillRect(posX + borderThickness,
                 posY - (barY - borderThickness),
                 (lifeSpan - (borderThickness * 2)),
                 barHeight);
-    }
+    }    
+
+    public void drawEnergyBar(int energy, int fullEnergy, int width, int posX, int posY) {
+        int borderThickness = 2;
+        int barHeight = 5;
+        int energySpan = Math.round((float) ((energy * 100 / fullEnergy) * width) / 100);
+        
+        // Menor deslocamento para posicionar logo abaixo da barra de vida
+        int barY = 5;
+        int offsetY = 5; // distância da barra de vida
+    
+        this.gc.setFill(Color.BLACK);
+        this.gc.fillRect(posX,
+                posY - barY + offsetY,
+                width,
+                barHeight + (borderThickness * 2));
+    
+        this.gc.setFill(Color.BLUE); // Cor da barra de energia
+        this.gc.fillRect(posX + borderThickness,
+                posY - (barY - borderThickness) + offsetY,
+                (energySpan - (borderThickness * 2)),
+                barHeight);
+    }    
 
     /**
      * Displays a status panel showing the protagonist's coordinates.
