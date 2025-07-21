@@ -2,7 +2,9 @@ package chon.group.game.core.agent;
 
 import java.util.List;
 
+import chon.group.game.core.weapon.CloseWeapon;
 import chon.group.game.core.weapon.Shot;
+import chon.group.game.core.weapon.Slash;
 import chon.group.game.core.weapon.Weapon;
 import chon.group.game.messaging.Message;
 
@@ -24,6 +26,10 @@ public class Agent extends Entity {
 
     /** The Agent's Weapon */
     private Weapon weapon;
+
+    
+    /* The Agent's Close Weapon */
+    private CloseWeapon closeWeapon;
 
     /** The initial agent's energy */
     private double energy;
@@ -133,6 +139,24 @@ public class Agent extends Entity {
     }
 
     /**
+     * Gets the agent's close combat weapon.
+     *
+     * @return its close combat weapon.
+     */
+    public CloseWeapon getCloseWeapon() {
+        return closeWeapon;
+    }
+
+    /**
+     * Sets the agent new weapon.
+     *
+     * @param weapon the new weapon
+     */
+    public void setCloseWeapon(CloseWeapon closeWeapon) {
+        this.closeWeapon = closeWeapon;
+    }
+
+    /**
      * Gets the current energy level (0.0 to 1.0).
      *
      * @return current energy level
@@ -229,5 +253,15 @@ public class Agent extends Entity {
         } else
             return null;
     }
+
+    public Slash useCloseWeapon() {
+        String direction = this.isFlipped() ? "LEFT" : "RIGHT";
+        if (this.energy >= this.getCloseWeapon().getEnergyCost()) {
+            this.consumeEnergy(this.getCloseWeapon().getEnergyCost());
+            return this.closeWeapon.slash(this.getPosX(), this.getPosY(), direction);
+        } else
+            return null;
+    }
+
 
 }

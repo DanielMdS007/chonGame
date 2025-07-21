@@ -6,10 +6,10 @@ import chon.group.game.core.agent.Agent;
 import chon.group.game.core.agent.Object;
 import chon.group.game.core.environment.Environment;
 import chon.group.game.core.weapon.Shot;
+import chon.group.game.core.weapon.Slash;
 import chon.group.game.messaging.Message;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
 /**
  * The {@code JavaFxMediator} class serves as an intermediary for rendering the
  * game environment
@@ -219,6 +219,20 @@ public class JavaFxMediator implements EnvironmentDrawer {
                                         shot.getPosY(),
                                         shot.getWidth(),
                                         shot.getHeight());
+                }
+        }
+
+        /**
+         * Renders all slashes within the environment.
+         */
+        @Override
+        public void drawSlashes() {
+                for (Slash slash : environment.getSlashes()) {
+                        drawer.drawImage(slash.getImage(),
+                                (int) this.environment.getCamera().updateEntity(slash),
+                                slash.getPosY(),
+                                slash.getWidth(),
+                                slash.getHeight());
                 }
         }
 }

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import chon.group.game.core.agent.Agent;
 import chon.group.game.core.agent.Entity;
 import chon.group.game.core.agent.Object;
+import chon.group.game.core.agent.Agent;
 import chon.group.game.core.weapon.Shot;
+import chon.group.game.core.weapon.Slash;
 import chon.group.game.messaging.Message;
 import javafx.scene.image.Image;
 
@@ -41,6 +42,9 @@ public class Environment extends Entity {
     /** List of shots present in the environment. */
     private List<Shot> shots;
 
+    /** List of slashes present in the environment. */
+    private List<Slash> slashes;
+
     /** The camera instance for the environment. */
     private Camera camera;
 
@@ -61,7 +65,8 @@ public class Environment extends Entity {
         this.objects = new ArrayList<Object>();
         this.messages = new ArrayList<Message>();
         this.shots = new ArrayList<Shot>();
-        this.camera = new Camera(screenWidth, width, 0.49, 0.51);
+        this.slashes = new ArrayList<Slash>();
+
     }
 
     /**
@@ -81,6 +86,7 @@ public class Environment extends Entity {
         this.objects = new ArrayList<Object>();
         this.messages = new ArrayList<Message>();
         this.shots = new ArrayList<Shot>();
+        this.slashes = new ArrayList<Slash>();
     }
 
     /**
@@ -200,6 +206,19 @@ public class Environment extends Entity {
      */
     public void setShots(List<Shot> shots) {
         this.shots = shots;
+    }
+
+        public List<Slash> getSlashes() {
+        return slashes;
+    }
+
+    /**
+     * Sets the list of slashes present in the environment.
+     *
+     * @param agents the new list of slashes
+     */
+    public void setSlashes(List<Slash> slashes) {
+        this.slashes = slashes;
     }
 
     /**
@@ -331,6 +350,32 @@ public class Environment extends Entity {
             }
         }
     }
+
+    public void updateSlashes() {
+        Iterator<Slash> itSlash = this.slashes.iterator();
+        while (itSlash.hasNext()) {
+            Slash slash = itSlash.next();
+
+            boolean hit = false;
+            Iterator<Agent> itAgent = this.agents.iterator();
+            while (itAgent.hasNext()) {
+                Agent agent = itAgent.next();
+                if (this.intersect(agent, slash)) {
+                    agent.takeDamage(slash.getDamage(), this.messages);
+                    if (agent.isDead())
+                        itAgent.remove(); 
+                    hit = true;
+                    break;
+                }
+            }
+
+            // Check if the slash intersects with the protagonist
+            if (hit || slash.shouldRemove()) {
+                itSlash.remove();
+            }
+        }
+}
+
 
     public void updateCamera() {
         if (this.camera != null)
