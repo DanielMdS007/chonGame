@@ -8,18 +8,21 @@ import chon.group.game.core.agent.Object;
 import chon.group.game.core.environment.Environment;
 import chon.group.game.core.weapon.CloseWeapon;
 import chon.group.game.core.weapon.Weapon;
-import chon.group.game.domain.weapon.Cannon;
-import chon.group.game.domain.weapon.Lancer;
-import chon.group.game.domain.weapon.Sword;
+import chon.group.game.domain.weapon.DL44;
+import chon.group.game.domain.weapon.LightSaber;
 
 public class GameSet {
 
     private int canvasWidth;
     private int canvasHeight;
     private Environment environment;
+    private static  int character = 1; // 1 for Han Solo, 2 for Luke Skywalker
 
     public GameSet() {
         this.load();
+    }
+    public static int getCharacter() {
+        return character;
     }
 
     public int getCanvasWidth() {
@@ -53,18 +56,23 @@ public class GameSet {
         /* Initialize the game environment, agents and weapons */
         environment = new Environment(0, 0, 780, 8024,
                 this.canvasWidth, "/images/environment/castleLong.png");
-        Agent chonBota = new Agent(400, 390, 90, 65, 3, 1000, "/images/agents/chonBota.png", false);
-        Weapon cannon = new Cannon(400, 390, 0, 0, 3, 0, 0.05, "", false);
-        Weapon lancer = new Lancer(400, 390, 0, 0, 3, 0, 0.05, "", false);
-        CloseWeapon lightSaber = new Sword(400, 390, 0, 0, 3, 0, "", false);
+       if(character==1){
+            Agent hansolo = new Agent(400, 390, 120, 85, 3, 1000, "/images/agents/hansolo.png", false);
+            Weapon blaster = new DL44(400, 390, 0, 0, 3, 0, 0.05, "", false);
+            hansolo.setWeapon(blaster);
+            environment.setProtagonist(hansolo);
+        }
+         if(character==2){
+           Agent luke = new Agent(400, 390, 120, 85, 5, 1000, "/images/agents/luke.png", false);
+           CloseWeapon lightSaber = new LightSaber(400, 390, 0, 0, 3, 0, "", false);
+           luke.setCloseWeapon(lightSaber);
+           environment.setProtagonist(luke);
+       }
+       
+        
 
-        chonBota.setWeapon(cannon);
-        chonBota.setWeapon(lancer);
-        chonBota.setCloseWeapon(lightSaber);
-
-        Agent chonBot = new Agent(920, 440, 90, 65, 1, 500, "/images/agents/chonBot.png", true);
-        environment.setProtagonist(chonBota);
-        environment.getAgents().add(chonBot);
+        Agent stormTrooper = new Agent(920, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true);
+        environment.getAgents().add(stormTrooper);
         environment.setPauseImage("/images/environment/pause.png");
         environment.setGameOverImage("/images/environment/gameover.png");
 

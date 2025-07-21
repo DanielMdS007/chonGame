@@ -7,7 +7,6 @@ import chon.group.game.core.environment.Environment;
 import chon.group.game.core.weapon.Shot;
 import chon.group.game.core.weapon.Slash;
 import chon.group.game.drawer.EnvironmentDrawer;
-
 public class Game {
 
     private Environment environment;
@@ -19,7 +18,7 @@ public class Game {
     /* If the player can slash again or not. */
     private boolean canSlash = true;
     /* If the player has made a decision about the weapon to use. */
-    private int weaponDecision = 2; // 0  = both, 1 = fireball, 2 = sword
+    private int weaponDecision = GameSet.getCharacter(); // 0  = both, 1 = fireball, 2 = sword
     
 
     public Game(Environment environment, EnvironmentDrawer mediator, ArrayList<String> input) {
