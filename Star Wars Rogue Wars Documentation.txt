@@ -1,0 +1,34 @@
+Star Wars: Rogue Wars
+
+Star Wars: Rogue Wars is a roguelike game built in the Chon Engine, where players embark on a mission to defeat stormtroopers and confront Darth Vader in an effort to bring an end to the Galactic War.
+You can play as either Luke Skywalker or Han Solo:
+Luke Skywalker is fast and wields a lightsaber to slice through enemies in close combat. However, he lacks the ability to fight at long range.
+Han Solo uses his D-44 blaster to shoot enemies from afar. While effective at a distance, he moves more slowly and must reload his weapon.
+
+Tasks to Complete
+-Character Selection Menu
+Add a menu allowing players to choose between Luke and Han.
+Note: The menu hasn’t been merged into the main branch yet—waiting on Rique’s pull request.
+
+-Star Wars-Themed Maps
+Add iconic locations such as the Death Star hallway and Palpatine’s throne room.
+Note: Room-switching functionality depends on Emanuel’s pull request.
+
+-Stormtrooper Combat
+Implement gunfire mechanics for stormtroopers.
+
+-Luke’s Deflection Mechanic
+Allow Luke to destroy stormtrooper projectiles with a well-timed lightsaber slash.
+
+-Additional Enemies
+Introduce new enemy types like Darth Vader and specialized troopers.
+Still brainstorming Vader’s moveset.
+
+-Combat Perks
+Add perks to modify the pace and style of battles.
+
+Optional Features
+-Add Princess Leia as a playable character.
+-Introduce Emperor Palpatine as a boss who attacks with Force lightning.
+-Enable lightsaber bullet deflection for Jedi characters.
+

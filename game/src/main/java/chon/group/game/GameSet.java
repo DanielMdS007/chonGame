@@ -16,7 +16,7 @@ public class GameSet {
     private int canvasWidth;
     private int canvasHeight;
     private Environment environment;
-    private static  int character = 1; // 1 for Han Solo, 2 for Luke Skywalker
+    private static  int character = 2; // 1 for Han Solo, 2 for Luke Skywalker
 
     public GameSet() {
         this.load();
@@ -54,8 +54,8 @@ public class GameSet {
         this.canvasWidth = 1280;
         this.canvasHeight = 780;
         /* Initialize the game environment, agents and weapons */
-        environment = new Environment(0, 0, 780, 8024,
-                this.canvasWidth, "/images/environment/castleLong.png");
+        environment = new Environment(0, 0, 780, 1920,
+                this.canvasWidth, "/images/environment/insideOfTheDeathStar.png");
        if(character==1){
             Agent hansolo = new Agent(400, 390, 120, 85, 3, 1000, "/images/agents/hansolo.png", false);
             Weapon blaster = new DL44(400, 390, 0, 0, 3, 0, 0.05, "", false);
@@ -71,8 +71,13 @@ public class GameSet {
        
         
 
-        Agent stormTrooper = new Agent(920, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true);
-        environment.getAgents().add(stormTrooper);
+        Agent stormTrooper1 = new Agent(520, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true);
+        environment.getAgents().add(stormTrooper1);
+        Agent stormTrooper2 = new Agent(920, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true);
+        environment.getAgents().add(stormTrooper2);
+        Agent stormTrooper3 = new Agent(1200, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true);
+        environment.getAgents().add(stormTrooper3);
+        
         environment.setPauseImage("/images/environment/pause.png");
         environment.setGameOverImage("/images/environment/gameover.png");
 
