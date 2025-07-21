@@ -66,8 +66,9 @@ public class Environment extends Entity {
         this.messages = new ArrayList<Message>();
         this.shots = new ArrayList<Shot>();
         this.slashes = new ArrayList<Slash>();
+        this.camera = new Camera(screenWidth, width, 0.49, 0.51);
 
-    }
+         }
 
     /**
      * Constructor to initialize the environment with dimensions, position, a
@@ -367,6 +368,7 @@ public class Environment extends Entity {
                     hit = true;
                     break;
                 }
+
             }
 
             // Check if the slash intersects with the protagonist
@@ -385,6 +387,7 @@ public class Environment extends Entity {
     public void update() {
         this.updateObjects();
         this.updateShots();
+        this.updateSlashes();
         this.updateMessages();
         this.updateCamera();
         this.detectCollision();

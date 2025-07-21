@@ -44,6 +44,7 @@ public class JavaFxMediator implements EnvironmentDrawer {
                 this.drawAgents();
                 this.drawObjects();
                 this.drawShots();
+                this.drawSlashes();
                 this.drawMessages();
         }
 

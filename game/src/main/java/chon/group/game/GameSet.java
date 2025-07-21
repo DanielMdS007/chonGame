@@ -6,9 +6,11 @@ import java.util.List;
 import chon.group.game.core.agent.Agent;
 import chon.group.game.core.agent.Object;
 import chon.group.game.core.environment.Environment;
+import chon.group.game.core.weapon.CloseWeapon;
 import chon.group.game.core.weapon.Weapon;
 import chon.group.game.domain.weapon.Cannon;
 import chon.group.game.domain.weapon.Lancer;
+import chon.group.game.domain.weapon.Sword;
 
 public class GameSet {
 
@@ -54,9 +56,11 @@ public class GameSet {
         Agent chonBota = new Agent(400, 390, 90, 65, 3, 1000, "/images/agents/chonBota.png", false);
         Weapon cannon = new Cannon(400, 390, 0, 0, 3, 0, 0.05, "", false);
         Weapon lancer = new Lancer(400, 390, 0, 0, 3, 0, 0.05, "", false);
+        CloseWeapon lightSaber = new Sword(400, 390, 0, 0, 3, 0, "", false);
 
         chonBota.setWeapon(cannon);
         chonBota.setWeapon(lancer);
+        chonBota.setCloseWeapon(lightSaber);
 
         Agent chonBot = new Agent(920, 440, 90, 65, 1, 500, "/images/agents/chonBot.png", true);
         environment.setProtagonist(chonBota);
@@ -80,7 +84,7 @@ public class GameSet {
         objects.add(new Object(5000, 380, 32, 32, "/images/agents/coin.png", true, false));
         objects.add(new Object(6200, 400, 32, 32, "/images/agents/coin.png", true, false));
 
-        environment.setObjects(objects);
+        environment.setObjects(objects);     
     }
 
 }
