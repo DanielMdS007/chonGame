@@ -11,15 +11,13 @@ public class Game {
 
     private Environment environment;
     private EnvironmentDrawer mediator;
-    ArrayList<String> input;
+    private ArrayList<String> input;
     private GameStatus status = GameStatus.START;
-    /* If the game is paused or not. */
-    private boolean isPaused = false;
+    private boolean debugMode = true;
     /* If the player can slash again or not. */
     private boolean canSlash = true;
     /* If the player has made a decision about the weapon to use. */
     private int weaponDecision = GameSet.getCharacter(); // 0  = both, 1 = fireball, 2 = sword
-    
 
     public Game(Environment environment, EnvironmentDrawer mediator, ArrayList<String> input) {
         this.environment = environment;
@@ -57,6 +55,14 @@ public class Game {
 
     public void setStatus(GameStatus status) {
         this.status = status;
+    }
+
+    public boolean isDebugMode() {
+        return debugMode;
+    }
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
     }
 
     public void loop() {
@@ -97,6 +103,7 @@ public class Game {
         if (!input.isEmpty()) {
             /** ChonBota Shoots Somebody Who Outdrew You */
             /** But only if she has enough energy */
+
               /* chonbota Only Moves if the Player Press Something */
             /* Update the protagonist's movements if input exists */
                 if (!input.isEmpty()) {
@@ -106,7 +113,7 @@ public class Game {
                                 input.remove("SPACE");
                                 Shot shot = environment.getProtagonist().useWeapon();
                                 if (shot != null)
-                                    environment.getShots().add(shot);
+                                    environment.getCurrentLevel().getShots().add(shot);
                             }
                         break;
 
@@ -117,7 +124,7 @@ public class Game {
                                 Slash slash = environment.getProtagonist().useCloseWeapon();
                                 
                                 if (slash != null)
-                                environment.getSlashes().add(slash);
+                                environment.getCurrentLevel().getSlashes().add(slash);
                                 
                             }
 
@@ -126,19 +133,20 @@ public class Game {
                      }
 
              }
+
             /* ChonBota's Movements */
             environment.getProtagonist().move(input);
             environment.checkBorders();
         }
         /* ChonBot's Automatic Movements */
         /* Update the other agents' movements */
-        for (Agent agent : environment.getAgents()) {
+        for (Agent agent : environment.getCurrentLevel().getAgents()) {
             agent.chase(environment.getProtagonist().getPosX(),
                     environment.getProtagonist().getPosY());
         }
         /* ChonBot's Automatic Movements */
         /* Update the other agents' movements */
-        for (Agent agent : environment.getAgents()) {
+        for (Agent agent : environment.getCurrentLevel().getAgents()) {
             agent.chase(environment.getProtagonist().getPosX(),
                     environment.getProtagonist().getPosY());
         }
@@ -159,10 +167,12 @@ public class Game {
 
     public void init() {
         this.status = GameStatus.RUNNING;
+        mediator.renderGame();
     }
 
     public void win() {
         this.status = GameStatus.START;
+        mediator.renderGame();
     }
 
     private void updateControls() {
