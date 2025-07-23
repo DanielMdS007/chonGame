@@ -27,7 +27,7 @@ public class LightSaber extends CloseWeapon {
                 0,
                 "/images/weapons/lightsaber/saberattack.png",
                 false,
-                100,
+                200,
                 direction);
     }
     @Override

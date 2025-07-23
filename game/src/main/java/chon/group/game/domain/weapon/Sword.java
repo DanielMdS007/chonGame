@@ -15,7 +15,6 @@ public class Sword extends CloseWeapon {
 
     @Override
     
-
     protected Slash createSlash(int posX, int posY, String direction) {
         if (direction.equals("RIGHT"))
             posX += 75 + 10;

@@ -7,7 +7,7 @@ public abstract class CloseWeapon extends Entity {
     
     private double energyCost;
     public CloseWeapon(int posX, int posY, int height, int width, int speed, int health, String pathImage, boolean flipped) {
-        super(posX, posY, height, width, speed, health, pathImage, flipped);
+        super(posX, posY, height, width, speed, health, pathImage, flipped, false);
         this.energyCost = energyCost;//close weapon is supposed to not waste energy, but i left it here for future use
     
     }

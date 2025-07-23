@@ -65,8 +65,8 @@ public class GameSet {
 
     private void load() {
         /* Define some size properties for both Canvas and Environment */
-        this.canvasWidth = 1280;
-        this.canvasHeight = 780;
+        this.canvasHeight = 1080;
+        this.canvasWidth = 1920;
 
         /** Define a general panel for life, energy, points, and objects. */
         panel = new Panel(
@@ -77,16 +77,16 @@ public class GameSet {
         Level level1 = new Level(
                 0,
                 0,
-                canvasHeight,
-                8024,
-                "/images/environment/castleLong.png");
+                canvasHeight ,
+                3200,
+                "/images/environment/insideOfTheDeathStar.png");
 
         Level level2 = new Level(
                 0,
                 0,
                 canvasHeight,
-                8000,
-                "/images/environment/mountain.png");
+                1920,
+                "/images/environment/palpatinesRoom.png");
 
         environment = new Environment(
                 this.canvasHeight,
@@ -113,6 +113,9 @@ public class GameSet {
         level1.getAgents().add(stormTrooper2);
         Agent stormTrooper3 = new Agent(1200, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true, true);
         level1.getAgents().add(stormTrooper3);
+
+        Agent darthVader = new Agent(520, 440, 130, 65, 2, 1000, "/images/agents/darthVader.png", true, true);
+       level2.getAgents().add(darthVader);
 
 
 
@@ -144,6 +147,8 @@ public class GameSet {
         environment.getLevels().add(level1);
         environment.getLevels().add(level2);
         environment.setCurrentLevel(level1);
+    
+
     }
 
 }

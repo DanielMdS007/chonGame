@@ -17,10 +17,9 @@ public class Slash extends Entity {
     public boolean shouldRemove() {
         return ticksAlive++ >= lifeSpan;
     }
-    
-    public Slash(int posX, int posY, int height, int width, int speed, int health, String pathImage, boolean flipped,
-            int damage, String direction) {
-        super(posX, posY, height, width, speed, health, pathImage, flipped);
+
+    public Slash(int posX, int posY, int height, int width, int speed, int health, String pathImage, boolean flipped, int damage, String direction) {
+        super(posX, posY, height, width, speed, health, pathImage, flipped, false);
         this.damage = damage;
         this.direction = direction;
     }
