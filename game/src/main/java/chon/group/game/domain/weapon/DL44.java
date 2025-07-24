@@ -19,7 +19,8 @@ public class DL44 extends Weapon {
             posX += 100 + 1;
         else
             posX -= 100 + 1;
-        return new Blaster(posX,
+            
+            return new Blaster(posX,
                 posY + 30,
                 20,
                 64,
@@ -27,8 +28,10 @@ public class DL44 extends Weapon {
                 0,
                 "/images/weapons/DL44/blast.png",
                 false,
-                500,
+                200,
                 direction);
+
+
     }
 
     @Override

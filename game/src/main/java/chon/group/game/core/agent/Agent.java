@@ -39,6 +39,9 @@ public class Agent extends Entity {
 
     /** The agent's energy recovery factor */
     private final double recoveryFactor;
+    
+    private long lastShotTime = 0;
+    private long shotCooldown = 5000;
 
     /**
      * Constructor to initialize the agent properties including its direction.
@@ -57,6 +60,22 @@ public class Agent extends Entity {
         this.energy = 1.0;
         this.fullEnergy = 1.0;
         this.recoveryFactor = 0.0002;
+        this.lastShotTime = lastShotTime;
+        this.shotCooldown = shotCooldown;
+    }
+
+    public long getLastShotTime() {
+        return lastShotTime;
+    }
+
+    public void setLastShotTime(long lastShotTime) {
+        this.lastShotTime = lastShotTime;
+    }
+    public long getShotCooldown() {
+        return shotCooldown;
+    }
+    public void setShotCooldown(long shotCooldown) {
+        this.shotCooldown = shotCooldown;
     }
 
     /**

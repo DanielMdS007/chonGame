@@ -10,6 +10,7 @@ import chon.group.game.core.environment.Level;
 import chon.group.game.core.weapon.CloseWeapon;
 import chon.group.game.core.weapon.Panel;
 import chon.group.game.core.weapon.Weapon;
+import chon.group.game.domain.weapon.Cannon;
 import chon.group.game.domain.weapon.DL44;
 import chon.group.game.domain.weapon.LightSaber;
 
@@ -109,9 +110,16 @@ public class GameSet {
 
         Agent stormTrooper1 = new Agent(520, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true, true);
         level1.getAgents().add(stormTrooper1);
+        Weapon enemyblaster1 = new Cannon(520, 440, 0, 0, 3, 0, 0.05, "", false);
+        stormTrooper1.setWeapon(enemyblaster1);
+
         Agent stormTrooper2 = new Agent(920, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true, true);
+        Weapon enemyblaster2 = new Cannon(920, 440, 0, 0, 3, 0, 0.05, "", false);
+        stormTrooper2.setWeapon(enemyblaster2);
         level1.getAgents().add(stormTrooper2);
         Agent stormTrooper3 = new Agent(1200, 440, 90, 65, 1, 500, "/images/agents/stormtrooper.png", true, true);
+        Weapon enemyblaster3 = new Cannon(1200, 440, 0, 0, 3, 0, 0.05, "", false);
+        stormTrooper3.setWeapon(enemyblaster3);
         level1.getAgents().add(stormTrooper3);
 
         Agent darthVader = new Agent(520, 440, 130, 65, 2, 1000, "/images/agents/darthVader.png", true, true);

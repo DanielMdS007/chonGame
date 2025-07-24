@@ -156,6 +156,24 @@ public class Game {
         /* If the agent died in this loop */
         if (environment.getProtagonist().isDead())
             this.status = GameStatus.GAME_OVER;
+
+        long currentTime = System.currentTimeMillis();
+
+
+        //funcao feita por mim para atirar automaticamente
+        for (Agent agent : environment.getCurrentLevel().getAgents()) {
+            
+                if (currentTime - agent.getLastShotTime() >= agent.getShotCooldown()) {
+                    Shot shot = agent.useWeapon();
+                    if (shot != null) {
+                        environment.getCurrentLevel().getShots().add(shot);
+                        agent.setLastShotTime(currentTime);
+                    }
+                }
+            
+        }
+
+
     }
 
     public void pause() {
